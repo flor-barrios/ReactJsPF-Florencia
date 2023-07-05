@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Navbar from './components/navbar.jsx';
+import OffcanvasExample from './components/navbar.jsx';
 import ListasProductos from './components/ListasProductos';
 import DetallesProducto from './components/DetallesProcuto';
 import ProductosComprados from './components/ProductosComprados';
@@ -25,7 +25,7 @@ const App = () => {
 
   return (
     <div>
-      <Navbar />
+      <OffcanvasExample />
 
       <div className='contenedor'>
         <h1>Tienda de Música</h1>

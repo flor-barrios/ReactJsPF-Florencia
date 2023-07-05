@@ -36,6 +36,7 @@ const datos = {
             imagen: '../img/discotaylor.jpg',
           },
     ],
+    
     vinilos: [
         {
             id: 6,
@@ -73,6 +74,7 @@ const datos = {
             imagen: '../img/vinilos.jpg',
           },
     ],
+
     instrumentos: [
       {
         id: 11,
