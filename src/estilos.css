@@ -87,9 +87,17 @@ flex-basis: 48%;
   margin-bottom: 10px;
 }
 
+.separador{
+  display: flex;
+  flex-wrap: wrap;
+  width: 98%;
+  justify-content: space-around;
+}
+
 .navbar ul {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .navbar li {
@@ -99,9 +107,24 @@ flex-basis: 48%;
 .navbar a {
   color: #fff;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 25px;
+  font-weight: bold;
+  padding-right: 10px;
 }
 
-.navbar a:hover {
-  text-decoration: underline;
+.navbar img {
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
 }
+
+.navbar form input{
+  justify-content: center;
+  border-radius: 12px;
+  border: #4A868C;
+  padding: 5px;
+}
+
+
+
+
