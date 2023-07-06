@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import OffcanvasExample from './components/navbar.jsx';
+import OffcanvasExample from './components/navbar';
 import ListasProductos from './components/ListasProductos';
-import DetallesProducto from './components/DetallesProcuto';
-import ProductosComprados from './components/ProductosComprados';
+import DetallesProducto from './components/DetallesProducto';
 import datos from './components/datos';
 import './estilos.css';
 
@@ -10,7 +9,7 @@ const App = () => {
   const [productoSeleccionado, setProductoSeleccionado] = useState(null);
   const [productosComprados, setProductosComprados] = useState([]);
 
-  const SeleccionarProducto = (producto) => {
+  const seleccionarProducto = (producto) => {
     setProductoSeleccionado(producto);
   };
 
@@ -25,9 +24,8 @@ const App = () => {
 
   return (
     <div>
-      <OffcanvasExample />
-
-      <div className='contenedor'>
+      <OffcanvasExample productosComprados={productosComprados} />
+      <div className="contenedor">
         <h1>Tienda de Música</h1>
         {productoSeleccionado ? (
           <DetallesProducto
@@ -37,23 +35,20 @@ const App = () => {
           />
         ) : (
           <div>
-            <ListasProductos
+            <ListasProductos greeting={"En prompoció!!"} 
               productos={datos.discos}
-              SeleccionarProducto={SeleccionarProducto}
+              seleccionarProducto={seleccionarProducto}
             />
-
             <ListasProductos
               productos={datos.vinilos}
-              SeleccionarProducto={SeleccionarProducto}
+              seleccionarProducto={seleccionarProducto}
             />
-
             <ListasProductos
               productos={datos.instrumentos}
-              SeleccionarProducto={SeleccionarProducto}
+              seleccionarProducto={seleccionarProducto}
             />
           </div>
         )}
-        <ProductosComprados productosComprados={productosComprados} />
       </div>
     </div>
   );

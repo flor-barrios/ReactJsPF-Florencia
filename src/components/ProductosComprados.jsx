@@ -1,9 +1,11 @@
 import React from 'react';
 
 const ProductosComprados = ({ productosComprados }) => {
+  const totalProductos = productosComprados.length;
+
   return (
     <div className='contenedor'>
-      <h2>Productos Comprados</h2>
+      <h2>Productos Comprados ({totalProductos})</h2>
       <ul>
         {productosComprados.map((producto) => (
           <li key={producto.id}>
