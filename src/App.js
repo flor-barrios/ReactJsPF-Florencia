@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import OffcanvasExample from './components/navbar';
-import ListasProductos from './components/ListasProductos';
 import DetallesProducto from './components/DetallesProducto';
+import ListasProductos from './components/ListasProductos';
 import datos from './components/datos';
+import OffcanvasExample from './components/navbar';
 import './estilos.css';
 
 const App = () => {
@@ -23,7 +23,7 @@ const App = () => {
   };
 
   return (
-    <div>
+    <div className='app'>
       <OffcanvasExample productosComprados={productosComprados} />
       <div className="contenedor">
         <h1>Tienda de Música</h1>
@@ -35,15 +35,18 @@ const App = () => {
           />
         ) : (
           <div>
-            <ListasProductos greeting={"En prompoció!!"} 
+            <ListasProductos
+              titulo="Discos"
               productos={datos.discos}
               seleccionarProducto={seleccionarProducto}
             />
             <ListasProductos
+              titulo="Vinilos"
               productos={datos.vinilos}
               seleccionarProducto={seleccionarProducto}
             />
             <ListasProductos
+              titulo="Instrumentos"
               productos={datos.instrumentos}
               seleccionarProducto={seleccionarProducto}
             />

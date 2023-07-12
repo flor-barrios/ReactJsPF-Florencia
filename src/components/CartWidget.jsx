@@ -8,7 +8,7 @@ const CartWidget = ({ productosComprados }) => {
     <div>
       <img
         src="../img/carrito-de-compras.png"
-        className="d-inline-block align-top"
+        className="d-inline-block align-top imagen"
         alt="Carrito de compras"
       />
       <span>{totalProductos}</span>

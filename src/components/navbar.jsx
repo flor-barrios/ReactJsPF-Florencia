@@ -17,7 +17,7 @@ function BrandExample({ productosComprados }) {
             className="me-2"
             aria-label="Search"
           />
-          <Button variant="outline-success">Search</Button>
+          <Button variant="outline-success" className='boton'>Search</Button>
         </Form>
         <div className="d-flex align-items-center">
           <CartWidget productosComprados={productosComprados} />
