@@ -1,6 +1,10 @@
 import React from 'react';
 
 const DetallesProducto = ({ producto, comprar, volverAtras }) => {
+  if (!producto) {
+    return null;
+  }
+
   return (
     <div className='contenedor'>
       <div className="detalles-contenedor">
@@ -13,14 +17,16 @@ const DetallesProducto = ({ producto, comprar, volverAtras }) => {
           <p>{producto.precio}</p>
           <div className='botones2'>
             {comprar && (
-              <button onClick={() => comprar(producto)} className='boton'>Comprar</button>
+              <button onClick={() => comprar(producto)} className='boton'>
+                Comprar
+              </button>
             )}
             {volverAtras && (
               <button onClick={volverAtras}>
-                <img src="./img/atras.png" alt="Volver atrás" className='atras' />
+                <img src="../img/atras.png" alt="Volver atrás" className='atras' />
               </button>
             )}
-          </div>  
+          </div>
         </div>
       </div>
     </div>
