@@ -27,20 +27,6 @@ h2 {
   text-align: left;
 }
 
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-li {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 20px;
-  margin-right: 20px;
-}
-
 .imagen {
   width: 200px;
   height: 200px;
@@ -74,11 +60,30 @@ p {
   margin: auto;
 }
 
+.slick-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin: 0 10px;
+}
+
+.slick-list {
+  height: 100%;
+}
+
+.slick-track {
+  display: flex;
+  align-items: center;
+}
+
+
 .lista-contenedor {
   display: flex;
   justify-content: space-between;
   margin-bottom: 40px;
-  }
+}
   
   .listas {
   flex-basis: 48%;
@@ -134,21 +139,11 @@ p {
   justify-content: space-evenly;
 }
 
-.imagen-container {
-  flex: 0 0 200px;
-  margin-right: 20px;
-}
-
 .informacion-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 50%;
-}
-
-.informacion-container h2,
-.informacion-container p {
-  text-align: left;
 }
 
 .botones2 {

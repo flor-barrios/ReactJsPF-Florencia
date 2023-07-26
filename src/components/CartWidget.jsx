@@ -1,7 +1,7 @@
 import React from 'react';
 
-const CartWidget = ({ productosComprados }) => {
-  const totalProductos = productosComprados ? productosComprados.length : 0;
+const CartWidget = ({ carrito }) => {
+  const totalProductos = carrito ? carrito : 0;
 
   return (
     <div>

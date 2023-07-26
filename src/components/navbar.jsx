@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import CartWidget from './CartWidget';
 
-function BrandExample({ productosComprados }) {
+function BrandExample({ carrito }) {
   return (
     <Navbar className="bg-body-tertiary">
       <Container className="d-flex justify-content-between align-items-center separador">
@@ -17,10 +17,10 @@ function BrandExample({ productosComprados }) {
             className="me-2"
             aria-label="Search"
           />
-          <Button variant="outline-success">Search</Button>
+          <Button variant="outline-success" className='boton'>Search</Button>
         </Form>
         <div className="d-flex align-items-center">
-          <CartWidget productosComprados={productosComprados} />
+          <CartWidget carrito={carrito} /> 
         </div>
       </Container>
     </Navbar>
