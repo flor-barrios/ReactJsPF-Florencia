@@ -6,17 +6,12 @@ import ProductosPage from './components/ProductosPage';
 import './estilos.css';
 
 const App = () => {
-  const [carrito, setCarrito] = useState(0);
-
   return (
     <BrowserRouter>
-      <OffcanvasExample productosComprados={carrito} />
+      <OffcanvasExample/>
       <Routes>
-        <Route
-          path="/productos/:id"
-          element={<ProductosPage carrito={carrito} setCarrito={setCarrito} />}
-        />
         <Route path="/" element={<Productos />} />
+        <Route path="/productos/:id" element={<ProductosPage/>} />
       </Routes>
     </BrowserRouter>
   );

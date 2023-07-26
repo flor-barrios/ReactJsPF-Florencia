@@ -18,10 +18,6 @@ function ProductosPage({ carrito, setCarrito }) {
     return <h2>Producto no encontrado</h2>;
   }
 
-  const handleComprar = () => {
-    setCarrito(carrito + 1);
-  };
-
   return (
     <div className='contenedor'>
       <div className='detalles-contenedor'>
@@ -30,7 +26,7 @@ function ProductosPage({ carrito, setCarrito }) {
         <p className='informacion-container'>{producto.descripcion}</p>
         <p>{producto.precio}</p>
         <Link to="/" className='boton'>Atrás</Link>
-        <button onClick={handleComprar} className='boton'>Comprar</button>
+        <button className='boton'>Comprar</button>
       </div>
     </div>
   );
