@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import OffcanvasExample from './components/navbar';
-import Productos from './components/Productos';
-import ProductosPage from './components/ProductosPage';
+import ItemList from './components/ItemList';
+import ItemPage from './components/ItemPage';
 import './estilos.css';
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <OffcanvasExample/>
+    <Router>
+      <OffcanvasExample />
       <Routes>
-        <Route path="/" element={<Productos />} />
-        <Route path="/productos/:id" element={<ProductosPage/>} />
+        <Route path="/" element={<ItemList />} />
+        <Route path="/productos/:id" element={<ItemPage />} />
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 };
 

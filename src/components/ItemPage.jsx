@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import productos from './datos';
 
-function ProductosPage({ carrito, setCarrito }) {
+const ItemPage = () => {
   const { id } = useParams();
 
   let producto;
@@ -22,14 +22,16 @@ function ProductosPage({ carrito, setCarrito }) {
     <div className='contenedor'>
       <div className='detalles-contenedor'>
         <h3>{producto.titulo}</h3>
-        <img src={producto.imagen} alt={producto.titulo} className='imagen'/>
+        <img src={producto.imagen} alt={producto.titulo} className='imagen' />
         <p className='informacion-container'>{producto.descripcion}</p>
         <p>{producto.precio}</p>
-        <Link to="/" className='boton'>Atrás</Link>
+        <Link to="/" className='boton'>
+          Atrás
+        </Link>
         <button className='boton'>Comprar</button>
       </div>
     </div>
   );
-}
+};
 
-export default ProductosPage;
+export default ItemPage;
