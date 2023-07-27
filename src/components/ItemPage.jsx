@@ -21,14 +21,20 @@ const ItemPage = () => {
   return (
     <div className='contenedor'>
       <div className='detalles-contenedor'>
-        <h3>{producto.titulo}</h3>
-        <img src={producto.imagen} alt={producto.titulo} className='imagen' />
-        <p className='informacion-container'>{producto.descripcion}</p>
-        <p>{producto.precio}</p>
-        <Link to="/" className='boton'>
-          Atrás
-        </Link>
-        <button className='boton'>Comprar</button>
+        <div className='titulo-imagen-container'>
+          <h3>{producto.titulo}</h3>
+          <img src={producto.imagen} alt={producto.titulo} className='imagen' />
+        </div>
+        <div className='informacion-container'>
+          <p>{producto.descripcion}</p>
+          <p className='precio'>{producto.precio}</p>
+          <div className='botones2'>
+            <Link to="/" className='boton boton2'>
+              Atrás
+            </Link>
+            <button className='boton boton2'>Comprar</button>
+          </div>
+        </div>
       </div>
     </div>
   );

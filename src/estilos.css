@@ -48,6 +48,7 @@ p {
   cursor: pointer;
   margin: 1px;
   transition: background-color 0.3s;
+  text-decoration: none;
 }
 
 .boton:hover {
@@ -59,25 +60,6 @@ p {
   max-width: 1200px;
   margin: auto;
 }
-
-.slick-slide {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  margin: 0 10px;
-}
-
-.slick-list {
-  height: 100%;
-}
-
-.slick-track {
-  display: flex;
-  align-items: center;
-}
-
 
 .lista-contenedor {
   display: flex;
@@ -132,34 +114,50 @@ p {
     border: #4A868C;
     padding: 5px;
   }
+  .detalles-contenedor {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; 
+    text-align: left;
+    margin-top: 30px;
+  }
+  
+  .imagen-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    justify-content: flex-start;
+    width: 30%;
+  }
+  
+  .titulo-imagen-container h3 {
+    font-size: 24px;
+    margin: 10px;
+  }
+  
+  .informacion-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+    width: 30%;
+  }
+  
+  .botones2 {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end; 
+    justify-content: space-around;
+    width: 100%;
+  }
+  
+  .precio {
+    text-align: center;
+    font-weight: bold;
+  }
 
-.detalles-contenedor {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-}
-
-.informacion-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 50%;
-}
-
-.botones2 {
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 10px;
-  text-align: center;
-  justify-content: space-between;
-}
-
-.botones2 img{
-  width: 30px;
-  height: 30px;
-}
-
-.atras{
-  border: none;
-  background: none;
-} 
+  .titulo-imagen-container{
+    margin-right: 20px;
+  }
+  
