@@ -1,11 +1,17 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import productos from './datos';
+import useCart from "../carrito/usarCarrito";
 
 const ItemPage = () => {
   const { id } = useParams();
+  const { addProduct } = useCart();
 
   let producto;
+
+  function handleComprar() {
+    addProduct(producto);
+  }
 
   for (const categoria in productos) {
     producto = productos[categoria].find((item) => item.id === Number(id));
@@ -32,7 +38,7 @@ const ItemPage = () => {
             <Link to="/" className='boton boton2'>
               Atrás
             </Link>
-            <button className='boton boton2'>Comprar</button>
+            <button className='boton boton2' onClick={handleComprar}>Comprar</button>
           </div>
         </div>
       </div>
