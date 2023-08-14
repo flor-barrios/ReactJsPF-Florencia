@@ -7,7 +7,6 @@ function CartProvider({ initialProductos = [], children }) {
   function addProduct(producto) {
     const nuevaLista = [...productos];
     nuevaLista.push(producto);
-
     setProductos(nuevaLista);
   }
 

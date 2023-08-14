@@ -11,7 +11,7 @@ const ItemPage = () => {
 
   function handleComprar() {
     addProduct(producto);
-  }
+  }  
 
   for (const categoria in productos) {
     producto = productos[categoria].find((item) => item.id === Number(id));
