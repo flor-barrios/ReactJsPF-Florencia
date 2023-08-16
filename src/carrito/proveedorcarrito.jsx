@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import CartContext from "./cartContext";
 
 function CartProvider({ initialProductos = [], children }) {
@@ -10,10 +10,16 @@ function CartProvider({ initialProductos = [], children }) {
     setProductos(nuevaLista);
   }
 
+  function removeProduct(id) {
+    const nuevaLista = productos.filter((producto) => producto.id !== id);
+    setProductos(nuevaLista);
+  }
+
   const valueProvided = {
     productos,
     addProduct,
-    cantidad: productos.length
+    removeProduct, 
+    cantidad: productos.length,
   };
 
   return (
