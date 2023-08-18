@@ -3,8 +3,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import BrandExample from './components/navbar';
 import ItemList from './components/ItemList';
 import ItemPage from './components/ItemPage';
-import  CartProvider from './carrito/proveedorcarrito'; 
+import CartProvider from './carrito/proveedorcarrito';
 import Cart from './carrito/cart';
+import Footer from './components/footer'; 
 import './estilos.css';
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
           <Route path="/productos/:id" element={<ItemPage />} />
           <Route path="/carrito" element={<Cart />} />
         </Routes>
+        <Footer /> 
       </CartProvider>
     </Router>
   );

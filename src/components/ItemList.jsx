@@ -1,21 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import { Link } from 'react-router-dom';
-import { getFirestore, collection, getDocs } from "firebase/firestore"; 
-import { firebaseConfig } from '../configuracion/firebaseConfig';
+import { getFirestore, collection, getDocs, query, where } from 'firebase/firestore';
 
 const ItemList = () => {
-  const [products, setProducts] = useState([]);
+  const [discos, setDiscos] = useState([]);
+  const [vinilos, setVinilos] = useState([]);
+  const [instrumentos, setInstrumentos] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const db = getFirestore(firebaseConfig);
+      const db = getFirestore();
       try {
-        const querySnapshot = await getDocs(collection(db, "datos"));
-        const data = querySnapshot.docs.map(doc => doc.data());
-        setProducts(data);
+        const discosQuery = query(collection(db, 'datos'), where("categoria", "==", "discos"));
+        const vinilosQuery = query(collection(db, 'datos'), where("categoria", "==", "vinilos"));
+        const instrumentosQuery = query(collection(db, 'datos'), where("categoria", "==", "instrumentos"));
+
+        const discosSnapshot = await getDocs(discosQuery);
+        const vinilosSnapshot = await getDocs(vinilosQuery);
+        const instrumentosSnapshot = await getDocs(instrumentosQuery);
+
+        const discosData = discosSnapshot.docs.map(doc => doc.data());
+        const vinilosData = vinilosSnapshot.docs.map(doc => doc.data());
+        const instrumentosData = instrumentosSnapshot.docs.map(doc => doc.data());
+
+        setDiscos(discosData);
+        setVinilos(vinilosData);
+        setInstrumentos(instrumentosData);
       } catch (error) {
-        console.error('Error recolectando los datos de Firestore', error);
+        console.error('Error fetching data from Firestore', error);
       }
     };
 
@@ -47,23 +60,54 @@ const ItemList = () => {
   return (
     <div className='contenedor'>
       <h1>La mejor Música en tus manos</h1>
-      {Object.keys(products).map(category => (
-        <div key={category}>
-          <h2>{category}</h2>
-          <Slider {...sliderSettings}>
-            {products[category].map(product => (
-              <div key={product.titulo} className='item'>
-                <h3>{product.titulo}</h3>
-                <img src={product.imagen} alt={product.titulo} className='imagen' />
-                <p>{product.precio}</p>
-                <Link to={`/productos/${product.titulo}`} className='boton'>
-                  Más detalles
-                </Link>
-              </div>
-            ))}
-          </Slider>
-        </div>
-      ))}
+
+      <div className='category'>
+        <h2>Discos</h2>
+        <Slider {...sliderSettings}>
+          {discos.map(product => (
+            <div key={product.titulo} className='item'>
+              <h3>{product.titulo}</h3>
+              <img src={product.imagen} alt={product.titulo} className='imagen' />
+              <p>{product.precio}</p>
+              <Link to={`/productos/${product.titulo}`} className='boton'>
+                Más detalles
+              </Link>
+            </div>
+          ))}
+        </Slider>
+      </div>
+
+      <div className='category'>
+        <h2>Vinilos</h2>
+        <Slider {...sliderSettings}>
+          {vinilos.map(product => (
+            <div key={product.titulo} className='item'>
+              <h3>{product.titulo}</h3>
+              <img src={product.imagen} alt={product.titulo} className='imagen' />
+              <p>{product.precio}</p>
+              <Link to={`/productos/${product.titulo}`} className='boton'>
+                Más detalles
+              </Link>
+            </div>
+          ))}
+        </Slider>
+      </div>
+
+      <div className='category'>
+        <h2>Instrumentos</h2>
+        <Slider {...sliderSettings}>
+          {instrumentos.map(product => (
+            <div key={product.titulo} className='item'>
+              <h3>{product.titulo}</h3>
+              <img src={product.imagen} alt={product.titulo} className='imagen' />
+              <p>{product.precio}</p>
+              <Link to={`/productos/${product.titulo}`} className='boton'>
+                Más detalles
+              </Link>
+            </div>
+          ))}
+        </Slider>
+      </div>
     </div>
   );
 };

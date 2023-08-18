@@ -1,38 +1,55 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import useCart from "../carrito/usarCarrito";
+import { getFirestore, doc, getDoc, collection } from 'firebase/firestore';
 
 const ItemPage = () => {
   const { id } = useParams();
   const { addProduct } = useCart();
+  const [datosData, setProductData] = useState(null);
 
-  let datos;
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const db = getFirestore();
+        const datosDocRef = doc(collection(db, 'datos'), id);
+        const datosSnapshot = await getDoc(datosDocRef);
+
+        if (datosSnapshot.exists()) {
+          setProductData(datosSnapshot.data());
+        } else {
+          console.log('Producto no encontrado');
+        }
+      } catch (error) {
+        console.error('Error al cargar los datos.', error);
+      }
+    };
+
+    fetchData();
+  }, [id]);
 
   function handleComprar() {
-    addProduct(datos);
-  }  
-
-  for (const categoria in datos) {
-    datos = datos[categoria].find((item) => item.id === Number(id));
-    if (datos) {
-      break;
+    if (datosData) {
+      addProduct(datosData);
     }
   }
 
-  if (!datos) {
+  if (!datosData) {
     return <h2>Producto no encontrado</h2>;
   }
+
+  const { titulo, imagen, descripcion, precio } = datosData;
 
   return (
     <div className='contenedor'>
       <div className='detalles-contenedor'>
         <div className='titulo-imagen-container'>
-          <h3>{datos.titulo}</h3>
-          <img src={datos.imagen} alt={datos.titulo} className='imagen' />
+          <h3>{titulo}</h3>
+          <img src={imagen} alt={titulo} className='imagen' />
         </div>
         <div className='informacion-container'>
-          <p>{datos.descripcion}</p>
-          <p className='precio'>{datos.precio}</p>
+          <p>{descripcion}</p>
+          <p className='precio'>{precio}</p>
           <div className='botones2'>
             <Link to="/" className='boton boton2'>
               Atrás
