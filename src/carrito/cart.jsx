@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Cart = () => {
   const { productos, removeProduct, clearCart } = useCart();
+  
   const cartTotalPrice = () => {
     let total = 0;
     productos.forEach(elem => {
@@ -22,7 +23,7 @@ const Cart = () => {
               <div className="cart-item">
                 <p>{producto.titulo}</p>
                 <img src={producto.imagen} alt={producto.titulo} className='imagen' />
-                <p>{producto.precio}</p>
+                <p>USD{producto.precio}</p>
                 <button className='boton' onClick={() => removeProduct(producto.id)}>Borrar</button>
               </div>
             </div>
@@ -36,7 +37,7 @@ const Cart = () => {
       </div>
       {productos.length > 0 && (
         <div className="total-container" style={{ textAlign: 'center', marginTop: '20px', fontWeight: 'bold'}}>
-          <p>Total: {cartTotalPrice()}</p>
+          <p>Total: {cartTotalPrice().toFixed(2)}</p>
         </div>
       )}
       {productos.length > 0 && (

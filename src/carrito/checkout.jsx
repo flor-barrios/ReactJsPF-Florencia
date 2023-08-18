@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import useCart from "./usarCarrito";
 import { Link } from 'react-router-dom';
+import Toastify from 'toastify-js';
 
 const Checkout = () => {
   const { productos, clearCart } = useCart();
@@ -17,10 +18,12 @@ const Checkout = () => {
     phone: '',
     email: '',
     paymentMethod: '',
-    cardNumber: '', // Nuevo campo para el número de tarjeta
-    cardExpiration: '', // Nuevo campo para la fecha de vencimiento de la tarjeta
-    cardCVV: '', // Nuevo campo para el CVV de la tarjeta
+    cardNumber: '', 
+    cardExpiration: '', 
+    cardCVV: '', 
   });
+
+  const [ setOrderId] = useState(null);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -36,7 +39,7 @@ const Checkout = () => {
       buyerInfo.phone &&
       buyerInfo.email &&
       buyerInfo.paymentMethod &&
-      (buyerInfo.paymentMethod !== 'credit' ||
+      (buyerInfo.paymentMethod !== 'credit' !== 'debit' ||
         (buyerInfo.cardNumber && buyerInfo.cardExpiration && buyerInfo.cardCVV))
     ) {
       const order = {
@@ -48,13 +51,29 @@ const Checkout = () => {
         })),
         total: cartTotalPrice(),
       };
+
+      const generatedOrderId = Math.floor(Math.random() * 1000000);
+      setOrderId(generatedOrderId); 
   
       console.log('Orden realizada:', order);
       clearCart(); 
     } else {
-      alert('Por favor complete todos los campos obligatorios y seleccione un método de pago.');
+      Toastify({
+        text: 'Por favor complete todos los campos obligatorios y seleccione un método de pago.',
+        duration: -1,
+        newWindow: true,
+        close: true,
+        gravity: "top",
+        position: "right",
+        stopOnFocus: true,
+        style: {
+          background: "#184656",
+        },
+        onClick: function () { }
+      }).showToast();
     }
   };
+
 
   const showCardFields = buyerInfo.paymentMethod === 'credit';
 
@@ -155,7 +174,7 @@ const Checkout = () => {
       </div>
       {productos.length > 0 && (
         <div className="total-container" style={{ textAlign: 'center', marginTop: '20px'}}>
-          <p style={{fontWeight: 'bold'}}>Total: {cartTotalPrice()}</p>
+          <p style={{fontWeight: 'bold'}}>Total: USD{cartTotalPrice().toFixed(2)}</p>
           <button onClick={handleBuy} className='boton'>Comprar</button>
           <Link to="/" className="boton">Volver a Tienda</Link>
         </div>

@@ -68,7 +68,7 @@ const ItemList = () => {
             <div key={product.id} className='item'>
               <h3>{product.titulo}</h3>
               <img src={product.imagen} alt={product.titulo} className='imagen' />
-              <p>{product.precio}</p>
+              <p>USD{product.precio}</p>
               <Link to={`/productos/${product.id}`} className='boton'>
                 Más detalles
               </Link>
@@ -84,7 +84,7 @@ const ItemList = () => {
             <div key={product.id} className='item'>
               <h3>{product.titulo}</h3>
               <img src={product.imagen} alt={product.titulo} className='imagen' />
-              <p>{product.precio}</p>
+              <p>USD{product.precio}</p>
               <Link to={`/productos/${product.id}`} className='boton'>
                 Más detalles
               </Link>
@@ -100,7 +100,7 @@ const ItemList = () => {
             <div key={product.id} className='item'>
               <h3>{product.titulo}</h3>
               <img src={product.imagen} alt={product.titulo} className='imagen' />
-              <p>{product.precio}</p>
+              <p>USD{product.precio}</p>
               <Link to={`/productos/${product.id}`} className='boton'>
                 Más detalles
               </Link>

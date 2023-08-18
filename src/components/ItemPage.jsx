@@ -16,7 +16,11 @@ const ItemPage = () => {
         const datosSnapshot = await getDoc(datosDocRef);
 
         if (datosSnapshot.exists()) {
-          setProductData(datosSnapshot.data());
+          const newItem = {
+            id: datosSnapshot.id,
+            ...datosSnapshot.data(),
+          };
+          setProductData(newItem);
         } else {
           console.log('Producto no encontrado');
         }
@@ -49,7 +53,7 @@ const ItemPage = () => {
         </div>
         <div className='informacion-container'>
           <p>{descripcion}</p>
-          <p className='precio'>{precio}</p>
+          <p className='precio'>USD{precio}</p>
           <div className='botones2'>
             <Link to="/" className='boton boton2'>
               Atrás
