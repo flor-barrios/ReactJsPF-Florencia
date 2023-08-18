@@ -20,9 +20,9 @@ const ItemList = () => {
         const vinilosSnapshot = await getDocs(vinilosQuery);
         const instrumentosSnapshot = await getDocs(instrumentosQuery);
 
-        const discosData = discosSnapshot.docs.map(doc => doc.data());
-        const vinilosData = vinilosSnapshot.docs.map(doc => doc.data());
-        const instrumentosData = instrumentosSnapshot.docs.map(doc => doc.data());
+        const discosData = discosSnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
+        const vinilosData = vinilosSnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
+        const instrumentosData = instrumentosSnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
 
         setDiscos(discosData);
         setVinilos(vinilosData);
@@ -65,11 +65,11 @@ const ItemList = () => {
         <h2>Discos</h2>
         <Slider {...sliderSettings}>
           {discos.map(product => (
-            <div key={product.titulo} className='item'>
+            <div key={product.id} className='item'>
               <h3>{product.titulo}</h3>
               <img src={product.imagen} alt={product.titulo} className='imagen' />
               <p>{product.precio}</p>
-              <Link to={`/productos/${product.titulo}`} className='boton'>
+              <Link to={`/productos/${product.id}`} className='boton'>
                 Más detalles
               </Link>
             </div>
@@ -81,11 +81,11 @@ const ItemList = () => {
         <h2>Vinilos</h2>
         <Slider {...sliderSettings}>
           {vinilos.map(product => (
-            <div key={product.titulo} className='item'>
+            <div key={product.id} className='item'>
               <h3>{product.titulo}</h3>
               <img src={product.imagen} alt={product.titulo} className='imagen' />
               <p>{product.precio}</p>
-              <Link to={`/productos/${product.titulo}`} className='boton'>
+              <Link to={`/productos/${product.id}`} className='boton'>
                 Más detalles
               </Link>
             </div>
@@ -95,13 +95,13 @@ const ItemList = () => {
 
       <div className='category'>
         <h2>Instrumentos</h2>
-        <Slider {...sliderSettings}>
+        <Slider {...sliderSettings} style={{ marginBottom: '100px' }}>
           {instrumentos.map(product => (
-            <div key={product.titulo} className='item'>
+            <div key={product.id} className='item'>
               <h3>{product.titulo}</h3>
               <img src={product.imagen} alt={product.titulo} className='imagen' />
               <p>{product.precio}</p>
-              <Link to={`/productos/${product.titulo}`} className='boton'>
+              <Link to={`/productos/${product.id}`} className='boton'>
                 Más detalles
               </Link>
             </div>

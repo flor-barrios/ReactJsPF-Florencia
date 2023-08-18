@@ -15,11 +15,16 @@ function CartProvider({ initialProductos = [], children }) {
     setProductos(nuevaLista);
   }
 
+  function clearCart() {
+    setProductos([]);
+  }
+
   const valueProvided = {
     productos,
     addProduct,
-    removeProduct, 
+    removeProduct,
     cantidad: productos.length,
+    clearCart,
   };
 
   return (

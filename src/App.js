@@ -5,7 +5,7 @@ import ItemList from './components/ItemList';
 import ItemPage from './components/ItemPage';
 import CartProvider from './carrito/proveedorcarrito';
 import Cart from './carrito/cart';
-import Footer from './components/footer'; 
+import Checkout from './carrito/checkout'; 
 import './estilos.css';
 
 const App = () => {
@@ -17,8 +17,8 @@ const App = () => {
           <Route path="/" element={<ItemList />} />
           <Route path="/productos/:id" element={<ItemPage />} />
           <Route path="/carrito" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} /> 
         </Routes>
-        <Footer /> 
       </CartProvider>
     </Router>
   );
