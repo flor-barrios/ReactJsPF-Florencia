@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 
 const Cart = () => {
   const { productos, removeProduct, clearCart } = useCart();
-  
+
   const cartTotalPrice = () => {
     let total = 0;
     productos.forEach(elem => {
-      total += elem.precio * elem.cantidad;
+      total += elem.datosData.precio * elem.cantidad;
     });
     return total;
   };
@@ -19,12 +19,12 @@ const Cart = () => {
       <div className="lista-contenedor">
         {productos.length > 0 ? (
           productos.map((producto) => (
-            <div key={producto.id} className="listas">
+            <div key={producto.datosData.id} className="listas">
               <div className="cart-item">
-                <p>{producto.titulo}</p>
-                <img src={producto.imagen} alt={producto.titulo} className='imagen' />
-                <p>USD{producto.precio}</p>
-                <button className='boton' onClick={() => removeProduct(producto.id)}>Borrar</button>
+                <p>{producto.datosData.titulo}</p>
+                <img src={producto.datosData.imagen} alt={producto.datosData.titulo} className='imagen' />
+                <p>USD{producto.datosData.precio}</p>
+                <button className='boton' onClick={() => removeProduct(producto.datosData.id)}>Borrar</button>
               </div>
             </div>
           ))

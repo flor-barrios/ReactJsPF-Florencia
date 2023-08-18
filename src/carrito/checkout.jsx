@@ -7,7 +7,7 @@ const Checkout = () => {
   const cartTotalPrice = () => {
     let total = 0;
     productos.forEach(elem => {
-      total += elem.precio * elem.cantidad;
+      total += elem.datosData.precio * elem.cantidad;
     });
     return total;
   };
@@ -22,7 +22,7 @@ const Checkout = () => {
     cardCVV: '', 
   });
 
-  const [setOrderId] = useState(null);
+  const [orderId, setOrderId] = useState(null);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -57,10 +57,10 @@ const Checkout = () => {
       };
 
       const generatedOrderId = Math.floor(Math.random() * 1000000);
-      setOrderId(generatedOrderId); 
+      setOrderId(generatedOrderId);
 
       console.log('Orden realizada:', order);
-      clearCart(); 
+      clearCart();
     } else {
       console.log('Por favor complete todos los campos obligatorios y seleccione un método de pago válido.');
     }
@@ -163,13 +163,23 @@ const Checkout = () => {
           </div>
         )}
       </div>
+
+      {orderId && (
+        <div>
+          <p>¡Compra realizada con éxito! Número de Orden: {orderId}</p>
+        </div>
+      )}
+
       {productos.length > 0 && (
         <div className="total-container" style={{ textAlign: 'center', marginTop: '20px'}}>
           <p style={{fontWeight: 'bold'}}>Total: USD{cartTotalPrice().toFixed(2)}</p>
           <button onClick={handleBuy} className='boton'>Comprar</button>
-          <Link to="/" className="boton">Volver a Tienda</Link>
         </div>
       )}
+      <div>
+          <Link to="/" className="boton">Volver a Tienda</Link>
+        </div>
+
     </div>
   );
 };

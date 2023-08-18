@@ -11,7 +11,7 @@ function CartProvider({ initialProductos = [], children }) {
   }
 
   function removeProduct(id) {
-    const nuevaLista = productos.filter((producto) => producto.id !== id);
+    const nuevaLista = productos.filter((producto) => producto.datosData.id !== id);
     setProductos(nuevaLista);
   }
 
