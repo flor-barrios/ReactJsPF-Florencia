@@ -1,9 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import { Link } from 'react-router-dom';
-import productos from './datos';
+import { getFirestore, collection, getDocs } from "firebase/firestore"; 
+import { firebaseConfig } from '../configuracion/firebaseConfig';
 
 const ItemList = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const db = getFirestore(firebaseConfig);
+      try {
+        const querySnapshot = await getDocs(collection(db, "datos"));
+        const data = querySnapshot.docs.map(doc => doc.data());
+        setProducts(data);
+      } catch (error) {
+        console.error('Error recolectando los datos de Firestore', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const sliderSettings = {
     dots: true,
     infinite: true,
@@ -29,47 +47,23 @@ const ItemList = () => {
   return (
     <div className='contenedor'>
       <h1>La mejor Música en tus manos</h1>
-      <h2>Discos</h2>
-      <Slider {...sliderSettings}>
-        {productos.discos.map((producto) => (
-          <div key={producto.id} className='item'>
-            <h3>{producto.titulo}</h3>
-            <img src={producto.imagen} alt={producto.titulo} className='imagen' />
-            <p>{producto.precio}</p>
-            <Link to={`/productos/${producto.id}`} className='boton'>
-              Más detalles
-            </Link>
-          </div>
-        ))}
-      </Slider>
-
-      <h2>Vinilos</h2>
-      <Slider {...sliderSettings}>
-        {productos.vinilos.map((producto) => (
-          <div key={producto.id} className='item'>
-            <h3>{producto.titulo}</h3>
-            <img src={producto.imagen} alt={producto.titulo} className='imagen' />
-            <p>{producto.precio}</p>
-            <Link to={`/productos/${producto.id}`} className='boton'>
-              Más detalles
-            </Link>
-          </div>
-        ))}
-      </Slider>
-
-      <h2>Instrumentos</h2>
-      <Slider {...sliderSettings}>
-        {productos.instrumentos.map((producto) => (
-          <div key={producto.id} className='item'>
-            <h3>{producto.titulo}</h3>
-            <img src={producto.imagen} alt={producto.titulo} className='imagen' />
-            <p>{producto.precio}</p>
-            <Link to={`/productos/${producto.id}`} className='boton'>
-              Más detalles
-            </Link>
-          </div>
-        ))}
-      </Slider>
+      {Object.keys(products).map(category => (
+        <div key={category}>
+          <h2>{category}</h2>
+          <Slider {...sliderSettings}>
+            {products[category].map(product => (
+              <div key={product.titulo} className='item'>
+                <h3>{product.titulo}</h3>
+                <img src={product.imagen} alt={product.titulo} className='imagen' />
+                <p>{product.precio}</p>
+                <Link to={`/productos/${product.titulo}`} className='boton'>
+                  Más detalles
+                </Link>
+              </div>
+            ))}
+          </Slider>
+        </div>
+      ))}
     </div>
   );
 };

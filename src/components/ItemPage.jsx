@@ -1,26 +1,25 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
-import productos from './datos';
 import useCart from "../carrito/usarCarrito";
 
 const ItemPage = () => {
   const { id } = useParams();
   const { addProduct } = useCart();
 
-  let producto;
+  let datos;
 
   function handleComprar() {
-    addProduct(producto);
+    addProduct(datos);
   }  
 
-  for (const categoria in productos) {
-    producto = productos[categoria].find((item) => item.id === Number(id));
-    if (producto) {
+  for (const categoria in datos) {
+    datos = datos[categoria].find((item) => item.id === Number(id));
+    if (datos) {
       break;
     }
   }
 
-  if (!producto) {
+  if (!datos) {
     return <h2>Producto no encontrado</h2>;
   }
 
@@ -28,12 +27,12 @@ const ItemPage = () => {
     <div className='contenedor'>
       <div className='detalles-contenedor'>
         <div className='titulo-imagen-container'>
-          <h3>{producto.titulo}</h3>
-          <img src={producto.imagen} alt={producto.titulo} className='imagen' />
+          <h3>{datos.titulo}</h3>
+          <img src={datos.imagen} alt={datos.titulo} className='imagen' />
         </div>
         <div className='informacion-container'>
-          <p>{producto.descripcion}</p>
-          <p className='precio'>{producto.precio}</p>
+          <p>{datos.descripcion}</p>
+          <p className='precio'>{datos.precio}</p>
           <div className='botones2'>
             <Link to="/" className='boton boton2'>
               Atrás
