@@ -12,6 +12,7 @@ function CartProvider({ initialProductos = [], children }) {
 
   function removeProduct(id) {
     const nuevaLista = productos.filter((producto) => producto.datosData.id !== id);
+    console.log('id borrado: ', id)
     setProductos(nuevaLista);
   }
 
