@@ -34,7 +34,8 @@ const ItemPage = () => {
 
   function handleComprar() {
     if (datosData) {
-      addProduct(datosData);
+      console.log("Producto a agregar:", datosData);
+      addProduct({datosData, cantidad: 1});
     }
   }
 

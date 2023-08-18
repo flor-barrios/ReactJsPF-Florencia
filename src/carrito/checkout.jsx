@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import useCart from "./usarCarrito";
 import { Link } from 'react-router-dom';
-import Toastify from 'toastify-js';
 
 const Checkout = () => {
   const { productos, clearCart } = useCart();
@@ -23,7 +22,7 @@ const Checkout = () => {
     cardCVV: '', 
   });
 
-  const [ setOrderId] = useState(null);
+  const [setOrderId] = useState(null);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -39,8 +38,13 @@ const Checkout = () => {
       buyerInfo.phone &&
       buyerInfo.email &&
       buyerInfo.paymentMethod &&
-      (buyerInfo.paymentMethod !== 'credit' !== 'debit' ||
-        (buyerInfo.cardNumber && buyerInfo.cardExpiration && buyerInfo.cardCVV))
+      (
+        buyerInfo.paymentMethod === 'debit' ||
+        (buyerInfo.paymentMethod === 'credit' &&
+          buyerInfo.cardNumber &&
+          buyerInfo.cardExpiration &&
+          buyerInfo.cardCVV)
+      )
     ) {
       const order = {
         buyer: buyerInfo,
@@ -54,28 +58,15 @@ const Checkout = () => {
 
       const generatedOrderId = Math.floor(Math.random() * 1000000);
       setOrderId(generatedOrderId); 
-  
+
       console.log('Orden realizada:', order);
       clearCart(); 
     } else {
-      Toastify({
-        text: 'Por favor complete todos los campos obligatorios y seleccione un método de pago.',
-        duration: -1,
-        newWindow: true,
-        close: true,
-        gravity: "top",
-        position: "right",
-        stopOnFocus: true,
-        style: {
-          background: "#184656",
-        },
-        onClick: function () { }
-      }).showToast();
+      console.log('Por favor complete todos los campos obligatorios y seleccione un método de pago válido.');
     }
   };
 
-
-  const showCardFields = buyerInfo.paymentMethod === 'credit';
+  const showCardFields = buyerInfo.paymentMethod ;
 
   return (
     <div className="checkout contenedor">
